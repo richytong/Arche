@@ -180,6 +180,26 @@ const ArticleWrapper = ReactElement(() => {
 })
 ```
 
+## Using React Fragments
+To use React fragments (`<>`), just return an array.
+
+```javascript [playground]
+const ReactElement = Arche(React)
+const { Div, H1, Img } = ReactElement
+
+const Placeholders = ReactElement(() => [
+  Img({ src: 'https://placehold.co/300x150', alt: 'placeholder' }),
+  Img({ src: 'https://placehold.co/300x150', alt: 'placeholder' }),
+])
+
+const Root = ReactElement(() => [
+  H1('Fragment Example'),
+  Placeholders(),
+])
+
+ReactDOM.render(Root(), document.getElementById('react-root'))
+```
+
 ## Using styled
 Arche accepts a `styled` option from css-in-js libraries like [Styled Components](https://styled-components.com/) to enable a `css` prop on `ReactElement` and `TypedReactElement`.
 
