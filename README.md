@@ -9,7 +9,13 @@ License: [CFOSS](https://cloutsworld.com/en-us/legal/license/cfoss)
 [![codecov](https://codecov.io/gh/richytong/arche/branch/master/graph/badge.svg)](https://codecov.io/gh/richytong/arche)
 [![npm version](https://img.shields.io/npm/v/arche.svg?style=flat)](https://www.npmjs.com/package/arche)
 
-HTML as JavaScript.
+## Vanilla Microfrontends
+
+A web page is a render of an HTML document.
+
+An HTML document loads JavaScript scripts and CSS stylesheets.
+
+JavaScript scripts can load JavaScript scripts.
 
 ```javascript [playground]
 {

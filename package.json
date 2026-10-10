@@ -11,11 +11,14 @@
   },
   "homepage": "https://github.com/richytong/arche",
   "keywords": [
+    "vanilla",
+    "micro-frontends",
+    "elements",
+    "components",
     "react",
     "reactjs",
-    "buildless",
-    "elements",
-    "components"
+    "styled",
+    "dom"
   ],
   "devDependencies": {
     "codecov": "^3.8.0",
