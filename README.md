@@ -17,6 +17,9 @@ An HTML document loads JavaScript scripts and CSS stylesheets.
 
 JavaScript scripts can load JavaScript scripts.
 
+Principles:
+  * Front end development for the web should be done in HTML, CSS, and JavaScript.
+
 ```javascript [playground]
 {
   const DocumentElement = Arche(document)
