@@ -101,7 +101,7 @@ static-web-server --port=8080 --root=./public
 Finally, navigate to `http://localhost:8080/`.
 
 ## Getting Started with React
-[React](https://react.dev/) is a library and paradigm for creating web and native interfaces in JavaScript. If you are still new to React, please watch this [video](https://www.instagram.com/p/DeVlsXRuVzU/).
+[React](https://react.dev/) is a library and paradigm for creating web and native interfaces in JavaScript. If you are new to React, please watch this [video](https://www.instagram.com/p/DeVlsXRuVzU/).
 
 Here is a project structure for a website made with React.
 ```
