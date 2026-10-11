@@ -100,6 +100,22 @@ static-web-server --port=8080 --root=./public
 
 Finally, navigate to `http://localhost:8080/`.
 
+## Tips
+
+### Import Statements
+To import a JavaScript file in another JavaScript file, use an `import` statement.
+```javascript
+import ClickExample from "./ClickExample.js"
+```
+
+### Dynamic Imports
+To dynamically import a module, use the `import` keyword as a function.
+```javascript
+async function () {
+  const myModule = await import("/my-module.js")
+}
+```
+
 ## Getting Started with React
 [React](https://react.dev/) is a library and paradigm for creating web and native interfaces in JavaScript. If you are new to React, please watch this [video](https://www.instagram.com/p/DeVlsXRuVzU/).
 
