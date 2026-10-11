@@ -90,6 +90,13 @@ window.Path = DocumentElement('path')
 ```
 
 ## Using React
+To install React, add the following script to the `<head></head>` tag of the HTML document of your web page.
+
+```html
+<script defer src="https://cdn.jsdelivr.net/npm/react@19.3.0/umd/react.production.min.js" crossorigin></script>
+<script defer src="https://cdn.jsdelivr.net/npm/react-dom@19.3.0/umd/react-dom.production.min.js" crossorigin></script>
+```
+
 To use Arche with [React](https://react.dev/), simply provide the React library.
 
 ```javascript
@@ -210,6 +217,11 @@ ReactDOM.render(Root(), document.getElementById('react-root'))
 ```
 
 ## Using styled
+To install Styled Components, add the following script to the `<head></head>` tag of the HTML document of your web page.
+```
+<script src="https://cdn.jsdelivr.net/npm/styled-components@6.1.19/dist/styled-components.min.js"></script>
+```
+
 Arche accepts a `styled` option from css-in-js libraries like [Styled Components](https://styled-components.com/) to enable a `css` prop on `ReactElement` and `TypedReactElement`.
 
 ```javascript
