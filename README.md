@@ -20,121 +20,150 @@ JavaScript scripts can load JavaScript scripts.
 Principles:
   * Front end development for the web should be done in HTML, CSS, and JavaScript.
 
-```javascript [playground]
-{
-  const DocumentElement = Arche(document)
-  const { Div, H1, P } = DocumentElement
+## Getting Started
 
-  const myElement = Div({ id: 'my-element' }, [
-    H1('DOM Example'),
-    P('paragraph'),
-    P('lorem ipsum'),
-  ])
+Vanilla microfrontends starts with an HTML document. Whenever a browser navigates to a web page, the first file it downloads and reads is the HTML document of the web page.
 
-  document.getElementById('dom-container').appendChild(myElement)
-}
+Here's a project structure you can use. The `public` directory will have all of the files that will be public to the world wide web.
 
-{
-  const ReactElement = Arche(React)
-  const { Div, H1, P, Button, Img } = ReactElement
-
-  const UserCard = ReactElement(({
-    firstName, lastName, age,
-  }) => Div([
-    H1(`${firstName} ${lastName}`),
-    Img({ src: 'https://placehold.co/300x300', alt: 'placeholder' }),
-    P({ style: { color: 'lightgrey' } }, `age: ${age}`),
-  ]))
-
-  ReactDOM.render(
-    UserCard({ firstName: 'React', lastName: 'ExampleUser', age: 32 }),
-    document.getElementById('react-root')
-  )
-}
+```
+public/
+    index.html
+    styles.css
+    index.js
 ```
 
-## Installation
-with `npm`
+The HTML document of a web page loads JavaScript scripts and CSS stylesheets. JavaScript scripts are defined with `<script></script>` tags, and CSS stylesheets with `<link>` tags. Add this to `index.html`.
 
-```bash
-npm i arche
-```
-
-with browser script, sets `window.Arche`
+The HTML document is read line by line, from top to bottom.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/arche"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome to Vanilla Microfrontends.</title>
+
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <h1>Welcome to Vanilla Microfrontends.</h1>
+  <p>This HTML document is the first file a browser downloads and reads when it navigates to this web page.</p>
+
+  <script src="https://cdn.jsdelivr.net/npm/arche"></script>
+  <script src="/index.js"></script>
+</body>
+</html>
 ```
 
-with [ES Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
-```javascript
-import Arche from 'https://cdn.jsdelivr.net/npm/arche/es.js'
-```
+CSS stylesheets are downloaded and read right after the HTML document. Add this to `styles.css`.
 
-Set `DocumentElement` globally for a better developer experience.
-
-```javascript
-// global.js
-const DocumentElement = Arche()
-
-window.DocumentElement = DocumentElement
-
-for (const elementName in DocumentElement) {
-  window[elementName] = DocumentElement[elementName]
+```css
+body {
+  color: #FFF;
+  background-color: #7FB665;
 }
 
-// set missing elements
-window.Aside = DocumentElement('aside')
-window.Svg = DocumentElement('svg')
-window.Path = DocumentElement('path')
+h1 {
+  font-size: 32px;
+}
+
+p {
+  font-size: 14px;
+}
 ```
 
-## Using React
-To install React, add the following script to the `<head></head>` tag of the HTML document of your web page.
+JavaScript scripts are run from where they are defined in the HTML. Add this to `index.js`.
 
+```javascript
+console.log("Welcome to Vanilla Microfrontends.")
+
+const DocumentElement = Arche(document)
+const { P } = DocumentElement
+
+const p = P("This element was added from index.js.")
+
+document.body.appendChild(p)
+```
+
+Now all you have to do to see the website you just created is serve the `public` folder. I recommend installing the `static-web-server` command line tool from [Static Web Server](https://static-web-server.net/).
+
+Install `static-web-server` with the following command:
+```sh
+curl --proto '=https' --tlsv1.2 -sSfL https://get.static-web-server.net | sh
+```
+
+Now you can serve the `public` folder. Serve the `public` folder with the following command:
+```sh
+static-web-server --port=8080 --root=./public
+```
+
+Finally, navigate to `http://localhost:8080/`.
+
+## Getting Started with React
+[React](https://react.dev/) is a library and paradigm for creating web and native user interfaces in JavaScript. If you are still new to React, please watch this [video](https://www.instagram.com/p/DeVlsXRuVzU/).
+
+Here is a project structure you can use for a website made with React.
+```
+public/
+    index.html
+    styles.css
+    index.js
+```
+
+Add this to the index.html file.
 ```html
-<script defer src="https://cdn.jsdelivr.net/npm/react@19.3.0/umd/react.production.min.js" crossorigin></script>
-<script defer src="https://cdn.jsdelivr.net/npm/react-dom@19.3.0/umd/react-dom.production.min.js" crossorigin></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome to Vanilla Microfrontends with React.</title>
+
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div id="react-root"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/arche"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react/umd/react.production.min.js" crossorigin></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="/index.js"></script>
+</body>
+</html>
 ```
 
-To use Arche with [React](https://react.dev/), simply provide the React library.
+Add this to `styles.css`.
+
+```css
+body {
+  color: #FFF;
+  background-color: #7FB665;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+p {
+  font-size: 14px;
+}
+
+#click-example {
+  margin-top: 20px;
+}
+```
+
+Add this to `index.js`.
 
 ```javascript
 const ReactElement = Arche(React)
-```
-
-Create dynamic components with props.
-
-```javascript [playground]
-const ReactElement = Arche(React)
-
-const { Div, H1, P, Button, Img } = ReactElement
-
-const UserCard = ReactElement(({
-  firstName, lastName, age,
-}) => Div([
-  H1(`${firstName} ${lastName}`),
-  Img({ src: 'https://placehold.co/300x300', alt: 'placeholder' }),
-  P({ style: { color: 'lightgrey' } }, `age: ${age}`),
-]))
-
-ReactDOM.render(
-  UserCard({ firstName: 'Example', lastName: 'Name', age: 32 }),
-  document.getElementById('react-root')
-)
-```
-
-Complete interoperability with React hooks (converted from [this example](https://reactjs.org/docs/hooks-intro.html)).
-
-```javascript [playground]
-const ReactElement = Arche(React)
-const { Div, P, Button } = ReactElement
+const { Div, H1, P, Button } = ReactElement
 const { useState } = React
 
-const Example = ReactElement(() => {
+const ClickExample = ReactElement(() => {
   const [count, setCount] = useState(0)
 
-  return Div([
+  return Div({ id: 'click-example' }, [
     P(`You clicked ${count} times`),
     Button({
       onClick() {
@@ -144,9 +173,28 @@ const Example = ReactElement(() => {
   ])
 })
 
-ReactDOM.render(Example(), document.getElementById('react-root'))
+const Root = ReactElement(() => {
+  return [
+    H1('Welcome to Vanilla Microfrontends with React.'),
+    P('All of the content on this page was added with React.'),
+    ClickExample(),
+  ]
+})
+
+ReactDOM.render(Root(), document.getElementById('react-root'))
 ```
 
+Serve the `public` folder.
+
+```sh
+static-web-server --port=8080 --root=./public
+```
+
+Navigate to `http://localhost:8080/`.
+
+## React Tips
+
+### Global
 Set `ReactElement` globally for a better developer experience.
 
 ```javascript
@@ -165,7 +213,7 @@ window.Svg = ReactElement('svg')
 window.Path = ReactElement('path')
 ```
 
-## Using React Context
+### Using React Context
 To use React Context with Arche, wrap `YourContext.Provider` with `ReactElement` and supply `value` as a prop, specifying children in the next argument.
 
 JSX example:
@@ -196,7 +244,7 @@ const ArticleWrapper = ReactElement(() => {
 })
 ```
 
-## Using React Fragments
+### Using React Fragments
 To use React fragments (`<>`), just return an array.
 
 ```javascript [playground]
@@ -216,7 +264,7 @@ const Root = ReactElement(() => [
 ReactDOM.render(Root(), document.getElementById('react-root'))
 ```
 
-## Using styled
+### Using styled
 To install Styled Components, add the following script to the `<head></head>` tag of the HTML document of your web page.
 ```
 <script src="https://cdn.jsdelivr.net/npm/styled-components@6.1.19/dist/styled-components.min.js"></script>
