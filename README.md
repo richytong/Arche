@@ -24,7 +24,7 @@ Principles:
 
 Vanilla microfrontends starts with an HTML document. Whenever a browser navigates to a web page, the first file it downloads and reads is the HTML document of the web page.
 
-Here's a project structure you can use. The `public` directory will have all of the files that will be public to the world wide web.
+Here's a project structure. The `public` directory will have all of the files that will be public to the world wide web.
 
 ```
 public/
@@ -101,9 +101,9 @@ static-web-server --port=8080 --root=./public
 Finally, navigate to `http://localhost:8080/`.
 
 ## Getting Started with React
-[React](https://react.dev/) is a library and paradigm for creating web and native user interfaces in JavaScript. If you are still new to React, please watch this [video](https://www.instagram.com/p/DeVlsXRuVzU/).
+[React](https://react.dev/) is a library and paradigm for creating web and native interfaces in JavaScript. If you are still new to React, please watch this [video](https://www.instagram.com/p/DeVlsXRuVzU/).
 
-Here is a project structure you can use for a website made with React.
+Here is a project structure for a website made with React.
 ```
 public/
     index.html
@@ -111,7 +111,7 @@ public/
     index.js
 ```
 
-Add this to the index.html file.
+Add this to the `index.html` file.
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -133,7 +133,6 @@ Add this to the index.html file.
 ```
 
 Add this to `styles.css`.
-
 ```css
 body {
   color: #FFF;
@@ -154,7 +153,6 @@ p {
 ```
 
 Add this to `index.js`.
-
 ```javascript
 const ReactElement = Arche(React)
 const { Div, H1, P, Button } = ReactElement
@@ -196,7 +194,6 @@ Navigate to `http://localhost:8080/`.
 
 ### Global
 Set `ReactElement` globally for a better developer experience.
-
 ```javascript
 // global.js
 const ReactElement = Arche(React)
@@ -213,8 +210,8 @@ window.Svg = ReactElement('svg')
 window.Path = ReactElement('path')
 ```
 
-### Using React Context
-To use React Context with Arche, wrap `YourContext.Provider` with `ReactElement` and supply `value` as a prop, specifying children in the next argument.
+### React Context
+To have React Context with Arche, wrap `YourContext.Provider` with `ReactElement` and supply `value` as a prop, specifying children in the next argument.
 
 JSX example:
 ```javascript
@@ -244,8 +241,8 @@ const ArticleWrapper = ReactElement(() => {
 })
 ```
 
-### Using React Fragments
-To use React fragments (`<>`), just return an array.
+### React Fragments
+For React fragments (`<>`), just return an array.
 
 ```javascript [playground]
 const ReactElement = Arche(React)
@@ -264,20 +261,18 @@ const Root = ReactElement(() => [
 ReactDOM.render(Root(), document.getElementById('react-root'))
 ```
 
-### Using styled
-To install Styled Components, add the following script to the `<head></head>` tag of the HTML document of your web page.
-```
-<script src="https://cdn.jsdelivr.net/npm/styled-components@6.1.19/dist/styled-components.min.js"></script>
+### Working with Styled Components
+To install Styled Components, add the following script to your Arche and React scripts.
+```html
+<script src="https://cdn.jsdelivr.net/npm/styled-components/dist/styled-components.min.js"></script>
 ```
 
 Arche accepts a `styled` option from css-in-js libraries like [Styled Components](https://styled-components.com/) to enable a `css` prop on `ReactElement` and `TypedReactElement`.
-
 ```javascript
 const ReactElement = Arche(React, { styled })
 ```
 
-Elements can now specify a `css` prop to use css-in-js.
-
+Elements can now specify a `css` prop for css-in-js.
 ```javascript [playground]
 const ReactElement = Arche(React, { styled })
 const { Div, H1, P } = ReactElement
