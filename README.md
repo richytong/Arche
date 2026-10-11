@@ -108,6 +108,7 @@ Here is a project structure for a website made with React.
 public/
     index.html
     styles.css
+    ClickExample.js
     index.js
 ```
 
@@ -152,10 +153,10 @@ p {
 }
 ```
 
-Add this to `index.js`.
+Add this to `ClickExample.js`.
 ```javascript
 const ReactElement = Arche(React)
-const { Div, H1, P, Button } = ReactElement
+const { Div, P, Button } = ReactElement
 const { useState } = React
 
 const ClickExample = ReactElement(() => {
@@ -170,6 +171,16 @@ const ClickExample = ReactElement(() => {
     }, 'Click me'),
   ])
 })
+
+export default ClickExample
+```
+
+Add this to `index.js`.
+```javascript
+import ClickExample from "./ClickExample.js"
+
+const ReactElement = Arche(React)
+const { Div, H1, P } = ReactElement
 
 const Root = ReactElement(() => {
   return [
