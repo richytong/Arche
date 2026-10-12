@@ -144,7 +144,7 @@ Add this to the `index.html` file.
   <script src="https://cdn.jsdelivr.net/npm/arche"></script>
   <script src="https://cdn.jsdelivr.net/npm/react/umd/react.production.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/react-dom/umd/react-dom.production.min.js"></script>
-  <script src="/index.js"></script>
+  <script src="/index.js" type="module"></script>
 </body>
 </html>
 ```
