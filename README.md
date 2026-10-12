@@ -178,13 +178,13 @@ const { useState } = React
 const ClickExample = ReactElement(() => {
   const [count, setCount] = useState(0)
 
-  return Div({ id: 'click-example' }, [
+  return Div({ id: "click-example" }, [
     P(`You clicked ${count} times`),
     Button({
       onClick() {
         setCount(count + 1)
       },
-    }, 'Click me'),
+    }, "Click me"),
   ])
 })
 
@@ -200,13 +200,13 @@ const { Div, H1, P } = ReactElement
 
 const Root = ReactElement(() => {
   return [
-    H1('Welcome to Vanilla Microfrontends with React.'),
-    P('All of the content on this page was added with React.'),
+    H1("Welcome to Vanilla Microfrontends with React."),
+    P("All of the content on this page was added with React."),
     ClickExample(),
   ]
 })
 
-ReactDOM.render(Root(), document.getElementById('react-root'))
+ReactDOM.render(Root(), document.getElementById("react-root"))
 ```
 
 Serve the `public` folder.
@@ -232,9 +232,9 @@ for (const elementName in ReactElement) {
 }
 
 // set missing elements
-window.Aside = ReactElement('aside')
-window.Svg = ReactElement('svg')
-window.Path = ReactElement('path')
+window.Aside = ReactElement("aside")
+window.Svg = ReactElement("svg")
+window.Path = ReactElement("path")
 ```
 
 ### React Context
@@ -276,16 +276,16 @@ const ReactElement = Arche(React)
 const { Div, H1, Img } = ReactElement
 
 const Placeholders = ReactElement(() => [
-  Img({ src: 'https://placehold.co/300x150', alt: 'placeholder' }),
-  Img({ src: 'https://placehold.co/300x150', alt: 'placeholder' }),
+  Img({ src: "https://placehold.co/300x150", alt: "placeholder" }),
+  Img({ src: "https://placehold.co/300x150", alt: "placeholder" }),
 ])
 
 const Root = ReactElement(() => [
-  H1('Fragment Example'),
+  H1("Fragment Example"),
   Placeholders(),
 ])
 
-ReactDOM.render(Root(), document.getElementById('react-root'))
+ReactDOM.render(Root(), document.getElementById("react-root"))
 ```
 
 ### Working with Styled Components
@@ -312,12 +312,12 @@ const MyComponent = ReactElement(() => {
       background-color: pink;
     `,
   }, [
-    H1('Styled Example'),
-    P('Text'),
+    H1("Styled Example"),
+    P("Text"),
   ])
 })
 
-ReactDOM.render(MyComponent(), document.getElementById('react-root'))
+ReactDOM.render(MyComponent(), document.getElementById("react-root"))
 ```
 
 # Contributing
