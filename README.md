@@ -320,8 +320,12 @@ const MyComponent = ReactElement(() => {
 ReactDOM.render(MyComponent(), document.getElementById("react-root"))
 ```
 
-## Server-Side Rendering
+# Server-Side Rendering
 For server-side rendering, see [ArcheHTML](https://github.com/richytong/ArcheHTML).
+
+# Vanilla Microfrontends Ecosystem
+Here are some awesome libraries that are part of the vanilla microfrontends ecosystem.
+  * [ArcheHighlight](https://github.com/richytong/ArcheHighlight) - Syntax highlighting for vanilla microfrontends.
 
 # Contributing
 Your feedback and contributions are welcome. If you have a suggestion, please raise an issue. Prior to that, please search through the issues first in case your suggestion has been made already. If you decide to work on an issue, please create a pull request.
