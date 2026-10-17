@@ -83,6 +83,13 @@ JavaScript scripts are run from where they are defined in the HTML. Add this to 
 ```javascript
 console.log("Welcome to Vanilla Microfrontends.")
 
+const DocumentElement = Arche(document)
+const { P } = DocumentElement
+
+const p2 = P("This element was added from index.js.")
+
+document.body.appendChild(p2)
+
 const p1 = document.querySelector("#click-example > p")
 const button = document.querySelector("#click-example > button")
 
@@ -92,13 +99,6 @@ button.addEventListener("click", () => {
   value += 1
   p1.innerHTML = `You clicked ${value} times.`
 })
-
-const DocumentElement = Arche(document)
-const { P } = DocumentElement
-
-const p2 = P("This element was added from index.js.")
-
-document.body.appendChild(p2)
 ```
 
 Now all you have to do to see the website you just created is serve the `public` folder. I recommend installing the `static-web-server` command line tool from [Static Web Server](https://static-web-server.net/).
