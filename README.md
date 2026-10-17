@@ -50,6 +50,11 @@ The HTML document is read line by line, from top to bottom.
   <h1>Welcome to Vanilla Microfrontends.</h1>
   <p>This HTML document is the first file a browser downloads and reads when it navigates to this web page.</p>
 
+  <div id="click-example">
+    <p>You clicked 0 times.</p>
+    <button>Click</button>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/arche"></script>
   <script src="/index.js"></script>
 </body>
@@ -78,12 +83,22 @@ JavaScript scripts are run from where they are defined in the HTML. Add this to 
 ```javascript
 console.log("Welcome to Vanilla Microfrontends.")
 
+const p1 = document.querySelector("#click-example > p")
+const button = document.querySelector("#click-example > button")
+
+let value = 0
+
+button.addEventListener("click", () => {
+  value += 1
+  p1.innerHTML = `You clicked ${value} times.`
+})
+
 const DocumentElement = Arche(document)
 const { P } = DocumentElement
 
-const p = P("This element was added from index.js.")
+const p2 = P("This element was added from index.js.")
 
-document.body.appendChild(p)
+document.body.appendChild(p2)
 ```
 
 Now all you have to do to see the website you just created is serve the `public` folder. I recommend installing the `static-web-server` command line tool from [Static Web Server](https://static-web-server.net/).
