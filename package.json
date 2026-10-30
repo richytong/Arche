@@ -11,7 +11,13 @@
   },
   "homepage": "https://github.com/richytong/arche",
   "files": [
-    "Arche.js"
+    "Arche.js",
+    "Arche.es.js",
+    "Arche.mjs",
+    "Arche.min.js",
+    "Arche.es.min.js",
+    "Arche.min.mjs",
+    "LICENSE"
   ],
   "keywords": [
     "vanilla",
