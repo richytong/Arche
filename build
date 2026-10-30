@@ -1,0 +1,112 @@
+#!/usr/bin/env node
+
+require("rubico/global")
+const fs = require("fs")
+const os = { path: require("path") }
+const { minify } = require("terser")
+
+const license = `
+/**
+ * Arche may be freely distributed under the CFOSS license.
+ */
+`.trim()
+
+const replace = (pattern, replacement) => value => value.replace(pattern, replacement)
+
+// path string => cjs string
+const pathToCode = pipe(
+  fs.readFileSync,
+  value => value.toString(),
+  replace(/\/\*\*[\s\S]+?\*\//g, ''),
+  replace(/module.exports .+?\n/, ''),
+  replace(/\n{2,}/g, "\n\n")
+)
+
+async function buildCjs() {
+  const baseCodeBundle = pathToCode("index.js")
+  const name = "Arche"
+  const bundle = `
+${license}
+${`(function (root, ${name}) {
+  if (typeof module == 'object') (module.exports = ${name}) // CommonJS
+  else if (typeof define == 'function') define(() => ${name}) // AMD
+  else (root.${name} = ${name}) // Browser
+}(typeof globalThis == 'object' ? globalThis : this, (function () {
+${baseCodeBundle}return ${name}
+}())))`}
+  `.trim()
+  await fs.promises.writeFile(`${__dirname}/Arche.js`, bundle)
+  console.log("Arche.js")
+}
+
+async function buildEsm() {
+  const baseCodeBundle = pathToCode("index.js")
+  const name = "Arche"
+  const bundle = `
+${license}
+${`${baseCodeBundle}export default ${name}`}
+  `.trim()
+  await fs.promises.writeFile(`${__dirname}/Arche.es.js`, bundle)
+  console.log("Arche.es.js")
+}
+
+async function buildMjs() {
+  const baseCodeBundle = pathToCode("index.js")
+  const name = "Arche"
+  const bundle = `
+${license}
+${`${baseCodeBundle}export default ${name}`}
+  `.trim()
+  await fs.promises.writeFile(`${__dirname}/Arche.mjs`, bundle)
+  console.log("Arche.mjs")
+}
+
+async function buildCjsMin() {
+  const baseCodeBundle = pathToCode("index.js")
+  const name = "Arche"
+  const bundle = `
+${license}
+${(await minify(`(function (root, ${name}) {
+  if (typeof module == 'object') (module.exports = ${name}) // CommonJS
+  else if (typeof define == 'function') define(() => ${name}) // AMD
+  else (root.${name} = ${name}) // Browser
+}(typeof globalThis == 'object' ? globalThis : this, (function () {
+${baseCodeBundle}return ${name}
+}())))`)).code}
+  `.trim()
+  await fs.promises.writeFile(`${__dirname}/Arche.min.js`, bundle)
+  console.log("Arche.min.js")
+}
+
+async function buildEsmMin() {
+  const baseCodeBundle = pathToCode("index.js")
+  const name = "Arche"
+  const bundle = `
+${license}
+${(await minify(`${baseCodeBundle}export default ${name}`)).code}
+  `.trim()
+  await fs.promises.writeFile(`${__dirname}/Arche.es.min.js`, bundle)
+  console.log("Arche.es.min.js")
+}
+
+async function buildMjsMin() {
+  const baseCodeBundle = pathToCode("index.js")
+  const name = "Arche"
+  const bundle = `
+${license}
+${(await minify(`${baseCodeBundle}export default ${name}`)).code}
+  `.trim()
+  await fs.promises.writeFile(`${__dirname}/Arche.min.mjs`, bundle)
+  console.log("Arche.min.mjs")
+}
+
+async function build() {
+  await buildCjs()
+  await buildEsm()
+  await buildMjs()
+  await buildCjsMin()
+  await buildEsmMin()
+  await buildMjsMin()
+}
+
+build()

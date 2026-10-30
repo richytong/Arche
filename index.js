@@ -1,13 +1,3 @@
-/**
- * Arche may be freely distributed under the CFOSS license.
- */
-
-(function (root, Arche) {
-  if (typeof module == 'object') (module.exports = Arche) // CommonJS
-  else if (typeof define == 'function') define(() => Arche) // AMD
-  else (root.Arche = Arche) // Browser
-}(typeof globalThis == 'object' ? globalThis : this, (function () { 'use strict'
-
 const isArray = Array.isArray
 
 /**
@@ -699,7 +689,6 @@ function __assignElementNames(CreatorElement) {
  * ```
  *
  */
-
 const Arche = function (creator, options = {}) {
   if (creator == null) {
     throw new TypeError('creator not defined')
@@ -731,5 +720,4 @@ const Arche = function (creator, options = {}) {
   return CreatorElement
 }
 
-return Arche
-}())))
+module.exports = Arche
